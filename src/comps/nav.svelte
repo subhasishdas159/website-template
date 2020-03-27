@@ -1,8 +1,9 @@
 <script>
-  let burgerActive = false
+  export let burgerActive
+  export let scrollY
   let activeMenu = "home"
 </script>
-<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+<nav class="navbar is-fixed-top" class:has-shadow={scrollY > 0} role="navigation" aria-label="main navigation">
   <div class="container is-flex-desktop">
     <div class="navbar-brand">
       <a class="navbar-item" href="#/">

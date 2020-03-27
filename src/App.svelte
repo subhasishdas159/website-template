@@ -8,6 +8,8 @@
 	import Nav from './comps/nav.svelte'	
 	import Footer from './comps/footer.svelte'	
 
+	let burgerActive = false
+	let scrollY = 0
 	const routes = {
 		'/': Home,
 		'/home': Home,
@@ -19,8 +21,11 @@
 
 </script>
 
-<Nav />
-<div>
+<svelte:window bind:scrollY={scrollY}/>
+
+<Nav bind:burgerActive={burgerActive} bind:scrollY={scrollY} />
+
+<div on:click={() => {burgerActive = false}}>
 	<Router {routes} />
 </div>
 <Footer />

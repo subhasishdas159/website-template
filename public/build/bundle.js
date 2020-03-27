@@ -125,6 +125,9 @@ var app = (function () {
     function add_render_callback(fn) {
         render_callbacks.push(fn);
     }
+    function add_flush_callback(fn) {
+        flush_callbacks.push(fn);
+    }
     let flushing = false;
     const seen_callbacks = new Set();
     function flush() {
@@ -211,6 +214,14 @@ var app = (function () {
     }
 
     const globals = (typeof window !== 'undefined' ? window : global);
+
+    function bind(component, name, callback) {
+        const index = component.$$.props[name];
+        if (index !== undefined) {
+            component.$$.bound[index] = callback;
+            callback(component.$$.ctx[index]);
+        }
+    }
     function create_component(block) {
         block && block.c();
     }
@@ -1181,32 +1192,36 @@ var app = (function () {
 
     function create_fragment$1(ctx) {
     	let section;
+    	let div4;
     	let div3;
-    	let div2;
-    	let div0;
+    	let div1;
     	let h1;
     	let t1;
     	let h2;
     	let t3;
     	let p0;
-    	let br;
+    	let br0;
     	let t5;
     	let p1;
+    	let br1;
     	let t7;
+    	let div0;
     	let button0;
     	let t9;
     	let button1;
     	let t11;
-    	let div1;
+    	let button2;
+    	let t13;
+    	let div2;
     	let img;
     	let img_src_value;
 
     	const block = {
     		c: function create() {
     			section = element("section");
+    			div4 = element("div");
     			div3 = element("div");
-    			div2 = element("div");
-    			div0 = element("div");
+    			div1 = element("div");
     			h1 = element("h1");
     			h1.textContent = "Some text";
     			t1 = space();
@@ -1215,47 +1230,58 @@ var app = (function () {
     			t3 = space();
     			p0 = element("p");
     			p0.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere similique ut deleniti ullam ex blanditiis enim, necessitatibus recusandae voluptatibus porro natus minus excepturi unde quasi minima animi. Illum, aliquid quasi!";
-    			br = element("br");
+    			br0 = element("br");
     			t5 = space();
     			p1 = element("p");
     			p1.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere similique ut deleniti ullam ex blanditiis enim, necessitatibus recusandae voluptatibus porro natus minus excepturi unde quasi minima animi. Illum, aliquid quasi!";
+    			br1 = element("br");
     			t7 = space();
+    			div0 = element("div");
     			button0 = element("button");
     			button0.textContent = "Click here";
     			t9 = space();
     			button1 = element("button");
     			button1.textContent = "Click here";
     			t11 = space();
-    			div1 = element("div");
+    			button2 = element("button");
+    			button2.textContent = "Click here";
+    			t13 = space();
+    			div2 = element("div");
     			img = element("img");
     			attr_dev(h1, "class", "title is-size-1-desktop is-size-2-touch");
-    			add_location(h1, file, 4, 8, 117);
+    			add_location(h1, file, 4, 8, 136);
     			attr_dev(h2, "class", "subtitle is-size-3-desktop is-size-4-touch");
-    			add_location(h2, file, 5, 8, 193);
+    			add_location(h2, file, 5, 8, 212);
     			attr_dev(p0, "class", "is-size-5-desktop is-size-6-touch");
-    			add_location(p0, file, 6, 8, 277);
-    			add_location(br, file, 6, 282, 551);
+    			add_location(p0, file, 6, 8, 296);
+    			add_location(br0, file, 6, 282, 570);
     			attr_dev(p1, "class", "is-size-5-desktop is-size-6-touch");
-    			add_location(p1, file, 7, 8, 565);
+    			add_location(p1, file, 7, 8, 584);
+    			add_location(br1, file, 7, 282, 858);
     			attr_dev(button0, "class", "button is-uppercase has-text-weight-semibold is-medium is-hidden-touch");
     			set_style(button0, "margin-top", "1rem");
     			set_style(button0, "background", "powderblue");
-    			add_location(button0, file, 8, 8, 849);
-    			attr_dev(button1, "class", "button is-uppercase has-text-weight-semibold is-hidden-desktop");
+    			add_location(button0, file, 9, 10, 889);
+    			attr_dev(button1, "class", "button is-uppercase has-text-weight-semibold is-hidden-desktop is-hidden-tablet-only is-fullwidth");
     			set_style(button1, "margin-top", "1rem");
     			set_style(button1, "background", "powderblue");
-    			add_location(button1, file, 9, 8, 1011);
-    			attr_dev(div0, "class", "column");
-    			add_location(div0, file, 3, 6, 87);
+    			add_location(button1, file, 10, 10, 1053);
+    			attr_dev(button2, "class", "button is-uppercase has-text-weight-semibold is-hidden-desktop is-hidden-mobile");
+    			set_style(button2, "margin-top", "1rem");
+    			set_style(button2, "background", "powderblue");
+    			add_location(button2, file, 11, 10, 1244);
+    			add_location(div0, file, 8, 8, 872);
+    			attr_dev(div1, "class", "column");
+    			add_location(div1, file, 3, 6, 106);
     			if (img.src !== (img_src_value = "assets/park.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "park picture");
-    			add_location(img, file, 12, 8, 1223);
-    			attr_dev(div1, "class", "column is-hidden-touch");
-    			add_location(div1, file, 11, 6, 1177);
-    			attr_dev(div2, "class", "columns");
-    			add_location(div2, file, 2, 4, 58);
-    			attr_dev(div3, "class", "container");
-    			add_location(div3, file, 1, 2, 29);
+    			add_location(img, file, 15, 8, 1489);
+    			attr_dev(div2, "class", "column is-hidden-touch");
+    			add_location(div2, file, 14, 6, 1443);
+    			attr_dev(div3, "class", "columns has-text-justified");
+    			add_location(div3, file, 2, 4, 58);
+    			attr_dev(div4, "class", "container");
+    			add_location(div4, file, 1, 2, 29);
     			attr_dev(section, "class", "section");
     			add_location(section, file, 0, 0, 0);
     		},
@@ -1264,24 +1290,28 @@ var app = (function () {
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
-    			append_dev(section, div3);
-    			append_dev(div3, div2);
-    			append_dev(div2, div0);
-    			append_dev(div0, h1);
-    			append_dev(div0, t1);
-    			append_dev(div0, h2);
-    			append_dev(div0, t3);
-    			append_dev(div0, p0);
-    			append_dev(div0, br);
-    			append_dev(div0, t5);
-    			append_dev(div0, p1);
-    			append_dev(div0, t7);
+    			append_dev(section, div4);
+    			append_dev(div4, div3);
+    			append_dev(div3, div1);
+    			append_dev(div1, h1);
+    			append_dev(div1, t1);
+    			append_dev(div1, h2);
+    			append_dev(div1, t3);
+    			append_dev(div1, p0);
+    			append_dev(div1, br0);
+    			append_dev(div1, t5);
+    			append_dev(div1, p1);
+    			append_dev(div1, br1);
+    			append_dev(div1, t7);
+    			append_dev(div1, div0);
     			append_dev(div0, button0);
     			append_dev(div0, t9);
     			append_dev(div0, button1);
-    			append_dev(div2, t11);
-    			append_dev(div2, div1);
-    			append_dev(div1, img);
+    			append_dev(div0, t11);
+    			append_dev(div0, button2);
+    			append_dev(div3, t13);
+    			append_dev(div3, div2);
+    			append_dev(div2, img);
     		},
     		p: noop,
     		i: noop,
@@ -1334,35 +1364,40 @@ var app = (function () {
 
     function create_fragment$2(ctx) {
     	let section;
+    	let div4;
     	let div3;
-    	let div2;
     	let div0;
     	let img;
     	let img_src_value;
     	let t0;
-    	let div1;
+    	let div2;
     	let h1;
     	let t2;
     	let h2;
     	let t4;
     	let p0;
-    	let br;
+    	let br0;
     	let t6;
     	let p1;
     	let t8;
+    	let div1;
+    	let br1;
+    	let t9;
     	let button0;
-    	let t10;
+    	let t11;
     	let button1;
+    	let t13;
+    	let button2;
 
     	const block = {
     		c: function create() {
     			section = element("section");
+    			div4 = element("div");
     			div3 = element("div");
-    			div2 = element("div");
     			div0 = element("div");
     			img = element("img");
     			t0 = space();
-    			div1 = element("div");
+    			div2 = element("div");
     			h1 = element("h1");
     			h1.textContent = "Some text";
     			t2 = space();
@@ -1371,44 +1406,56 @@ var app = (function () {
     			t4 = space();
     			p0 = element("p");
     			p0.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere similique ut deleniti ullam ex blanditiis enim, necessitatibus recusandae voluptatibus porro natus minus excepturi unde quasi minima animi. Illum, aliquid quasi!";
-    			br = element("br");
+    			br0 = element("br");
     			t6 = space();
     			p1 = element("p");
     			p1.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere similique ut deleniti ullam ex blanditiis enim, necessitatibus recusandae voluptatibus porro natus minus excepturi unde quasi minima animi. Illum, aliquid quasi!";
     			t8 = space();
+    			div1 = element("div");
+    			br1 = element("br");
+    			t9 = space();
     			button0 = element("button");
     			button0.textContent = "Click here";
-    			t10 = space();
+    			t11 = space();
     			button1 = element("button");
     			button1.textContent = "Click here";
+    			t13 = space();
+    			button2 = element("button");
+    			button2.textContent = "Click here";
     			if (img.src !== (img_src_value = "assets/park.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "park picture");
     			add_location(img, file$1, 4, 8, 133);
     			attr_dev(div0, "class", "column is-hidden-touch");
     			add_location(div0, file$1, 3, 6, 87);
     			attr_dev(h1, "class", "title is-size-1-desktop is-size-2-touch");
-    			add_location(h1, file$1, 7, 8, 231);
+    			add_location(h1, file$1, 7, 8, 250);
     			attr_dev(h2, "class", "subtitle is-size-3-desktop is-size-4-touch");
-    			add_location(h2, file$1, 8, 8, 307);
+    			add_location(h2, file$1, 8, 8, 326);
     			attr_dev(p0, "class", "is-size-5-desktop is-size-6-touch");
-    			add_location(p0, file$1, 9, 8, 391);
-    			add_location(br, file$1, 9, 282, 665);
+    			add_location(p0, file$1, 9, 8, 410);
+    			add_location(br0, file$1, 9, 282, 684);
     			attr_dev(p1, "class", "is-size-5-desktop is-size-6-touch");
-    			add_location(p1, file$1, 10, 8, 679);
+    			add_location(p1, file$1, 10, 8, 698);
+    			add_location(br1, file$1, 11, 13, 987);
     			attr_dev(button0, "class", "button is-uppercase has-text-weight-semibold is-medium is-hidden-touch");
     			set_style(button0, "margin-top", "1rem");
     			set_style(button0, "background", "powderblue");
-    			add_location(button0, file$1, 11, 8, 963);
-    			attr_dev(button1, "class", "button is-uppercase has-text-weight-semibold is-hidden-desktop");
+    			add_location(button0, file$1, 12, 10, 1003);
+    			attr_dev(button1, "class", "button is-uppercase has-text-weight-semibold is-hidden-desktop is-hidden-tablet-only is-fullwidth");
     			set_style(button1, "margin-top", "1rem");
     			set_style(button1, "background", "powderblue");
-    			add_location(button1, file$1, 12, 8, 1125);
-    			attr_dev(div1, "class", "column");
-    			add_location(div1, file$1, 6, 6, 201);
-    			attr_dev(div2, "class", "columns");
-    			add_location(div2, file$1, 2, 4, 58);
-    			attr_dev(div3, "class", "container");
-    			add_location(div3, file$1, 1, 2, 29);
+    			add_location(button1, file$1, 13, 10, 1167);
+    			attr_dev(button2, "class", "button is-uppercase has-text-weight-semibold is-hidden-desktop is-hidden-mobile");
+    			set_style(button2, "margin-top", "1rem");
+    			set_style(button2, "background", "powderblue");
+    			add_location(button2, file$1, 14, 10, 1358);
+    			add_location(div1, file$1, 11, 8, 982);
+    			attr_dev(div2, "class", "column has-text-justified");
+    			add_location(div2, file$1, 6, 6, 201);
+    			attr_dev(div3, "class", "columns");
+    			add_location(div3, file$1, 2, 4, 58);
+    			attr_dev(div4, "class", "container");
+    			add_location(div4, file$1, 1, 2, 29);
     			attr_dev(section, "class", "section");
     			add_location(section, file$1, 0, 0, 0);
     		},
@@ -1417,24 +1464,29 @@ var app = (function () {
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
-    			append_dev(section, div3);
-    			append_dev(div3, div2);
-    			append_dev(div2, div0);
+    			append_dev(section, div4);
+    			append_dev(div4, div3);
+    			append_dev(div3, div0);
     			append_dev(div0, img);
-    			append_dev(div2, t0);
+    			append_dev(div3, t0);
+    			append_dev(div3, div2);
+    			append_dev(div2, h1);
+    			append_dev(div2, t2);
+    			append_dev(div2, h2);
+    			append_dev(div2, t4);
+    			append_dev(div2, p0);
+    			append_dev(div2, br0);
+    			append_dev(div2, t6);
+    			append_dev(div2, p1);
+    			append_dev(div2, t8);
     			append_dev(div2, div1);
-    			append_dev(div1, h1);
-    			append_dev(div1, t2);
-    			append_dev(div1, h2);
-    			append_dev(div1, t4);
-    			append_dev(div1, p0);
-    			append_dev(div1, br);
-    			append_dev(div1, t6);
-    			append_dev(div1, p1);
-    			append_dev(div1, t8);
+    			append_dev(div1, br1);
+    			append_dev(div1, t9);
     			append_dev(div1, button0);
-    			append_dev(div1, t10);
+    			append_dev(div1, t11);
     			append_dev(div1, button1);
+    			append_dev(div1, t13);
+    			append_dev(div1, button2);
     		},
     		p: noop,
     		i: noop,
@@ -1554,37 +1606,37 @@ var app = (function () {
     			strong2.textContent = "sections";
     			t16 = text(", like the one you're currently reading");
     			attr_dev(h10, "class", "title is-size-3");
-    			add_location(h10, file$2, 5, 10, 190);
-    			add_location(strong0, file$2, 7, 56, 321);
+    			add_location(h10, file$2, 5, 10, 215);
+    			add_location(strong0, file$2, 7, 56, 346);
     			attr_dev(p0, "class", "is-size-5");
-    			add_location(p0, file$2, 6, 10, 242);
+    			add_location(p0, file$2, 6, 10, 267);
     			attr_dev(section0, "class", "section");
-    			add_location(section0, file$2, 4, 8, 153);
+    			add_location(section0, file$2, 4, 8, 178);
     			attr_dev(div0, "class", "column");
-    			add_location(div0, file$2, 3, 6, 123);
+    			add_location(div0, file$2, 3, 6, 148);
     			attr_dev(h11, "class", "title is-size-3");
-    			add_location(h11, file$2, 13, 10, 510);
-    			add_location(strong1, file$2, 15, 56, 641);
+    			add_location(h11, file$2, 13, 10, 535);
+    			add_location(strong1, file$2, 15, 56, 666);
     			attr_dev(p1, "class", "is-size-5");
-    			add_location(p1, file$2, 14, 10, 562);
+    			add_location(p1, file$2, 14, 10, 587);
     			attr_dev(section1, "class", "section");
-    			add_location(section1, file$2, 12, 8, 473);
+    			add_location(section1, file$2, 12, 8, 498);
     			attr_dev(div1, "class", "column");
-    			add_location(div1, file$2, 11, 6, 443);
+    			add_location(div1, file$2, 11, 6, 468);
     			attr_dev(h12, "class", "title is-size-3");
-    			add_location(h12, file$2, 21, 10, 830);
-    			add_location(strong2, file$2, 23, 56, 961);
+    			add_location(h12, file$2, 21, 10, 855);
+    			add_location(strong2, file$2, 23, 56, 986);
     			attr_dev(p2, "class", "is-size-5");
-    			add_location(p2, file$2, 22, 10, 882);
+    			add_location(p2, file$2, 22, 10, 907);
     			attr_dev(section2, "class", "section");
-    			add_location(section2, file$2, 20, 8, 793);
+    			add_location(section2, file$2, 20, 8, 818);
     			attr_dev(div2, "class", "column");
-    			add_location(div2, file$2, 19, 6, 763);
-    			attr_dev(div3, "class", "columns");
-    			add_location(div3, file$2, 2, 4, 94);
+    			add_location(div2, file$2, 19, 6, 788);
+    			attr_dev(div3, "class", "columns has-text-justified has-text-centered-mobile");
+    			add_location(div3, file$2, 2, 4, 75);
     			attr_dev(div4, "class", "container");
-    			add_location(div4, file$2, 1, 2, 65);
-    			attr_dev(div5, "class", "has-background-light has-text-justified section");
+    			add_location(div4, file$2, 1, 2, 46);
+    			attr_dev(div5, "class", "has-background-light section");
     			add_location(div5, file$2, 0, 0, 0);
     		},
     		l: function claim(nodes) {
@@ -2303,51 +2355,52 @@ var app = (function () {
     			attr_dev(img, "alt", "brand pic");
     			attr_dev(img, "width", "112");
     			attr_dev(img, "height", "28");
-    			add_location(img, file$8, 8, 8, 282);
+    			add_location(img, file$8, 9, 8, 334);
     			attr_dev(a0, "class", "navbar-item svelte-svphjj");
     			attr_dev(a0, "href", "#/");
-    			add_location(a0, file$8, 7, 6, 239);
+    			add_location(a0, file$8, 8, 6, 291);
     			attr_dev(span0, "aria-hidden", "true");
-    			add_location(span0, file$8, 11, 8, 562);
+    			add_location(span0, file$8, 12, 8, 614);
     			attr_dev(span1, "aria-hidden", "true");
-    			add_location(span1, file$8, 12, 8, 604);
+    			add_location(span1, file$8, 13, 8, 656);
     			attr_dev(span2, "aria-hidden", "true");
-    			add_location(span2, file$8, 13, 8, 646);
+    			add_location(span2, file$8, 14, 8, 698);
     			attr_dev(span3, "role", "button");
     			attr_dev(span3, "class", "navbar-burger");
     			attr_dev(span3, "aria-label", "menu");
     			attr_dev(span3, "aria-expanded", "false");
     			toggle_class(span3, "is-active", /*burgerActive*/ ctx[0]);
-    			add_location(span3, file$8, 10, 6, 392);
+    			add_location(span3, file$8, 11, 6, 444);
     			attr_dev(div0, "class", "navbar-brand");
-    			add_location(div0, file$8, 6, 4, 205);
+    			add_location(div0, file$8, 7, 4, 257);
     			attr_dev(a1, "href", "#/");
     			attr_dev(a1, "class", "navbar-item svelte-svphjj");
-    			toggle_class(a1, "navActive", /*activeMenu*/ ctx[1] == "home");
-    			add_location(a1, file$8, 18, 10, 849);
+    			toggle_class(a1, "navActive", /*activeMenu*/ ctx[2] == "home");
+    			add_location(a1, file$8, 19, 10, 901);
     			attr_dev(a2, "href", "#/about");
     			attr_dev(a2, "class", "navbar-item svelte-svphjj");
-    			toggle_class(a2, "navActive", /*activeMenu*/ ctx[1] == "about");
-    			add_location(a2, file$8, 19, 10, 978);
+    			toggle_class(a2, "navActive", /*activeMenu*/ ctx[2] == "about");
+    			add_location(a2, file$8, 20, 10, 1030);
     			attr_dev(a3, "href", "#/booking");
     			attr_dev(a3, "class", "navbar-item svelte-svphjj");
-    			toggle_class(a3, "navActive", /*activeMenu*/ ctx[1] == "booking");
-    			add_location(a3, file$8, 20, 10, 1115);
+    			toggle_class(a3, "navActive", /*activeMenu*/ ctx[2] == "booking");
+    			add_location(a3, file$8, 21, 10, 1167);
     			attr_dev(a4, "href", "#/faq");
     			attr_dev(a4, "class", "navbar-item svelte-svphjj");
-    			toggle_class(a4, "navActive", /*activeMenu*/ ctx[1] == "faq");
-    			add_location(a4, file$8, 21, 10, 1260);
+    			toggle_class(a4, "navActive", /*activeMenu*/ ctx[2] == "faq");
+    			add_location(a4, file$8, 22, 10, 1312);
     			attr_dev(div1, "class", "navbar-end");
-    			add_location(div1, file$8, 17, 6, 813);
+    			add_location(div1, file$8, 18, 6, 865);
     			attr_dev(div2, "class", "navbar-menu");
     			toggle_class(div2, "is-active", /*burgerActive*/ ctx[0]);
-    			add_location(div2, file$8, 16, 4, 711);
+    			add_location(div2, file$8, 17, 4, 763);
     			attr_dev(div3, "class", "container is-flex-desktop");
-    			add_location(div3, file$8, 5, 2, 160);
+    			add_location(div3, file$8, 6, 2, 212);
     			attr_dev(nav, "class", "navbar is-fixed-top");
     			attr_dev(nav, "role", "navigation");
     			attr_dev(nav, "aria-label", "main navigation");
-    			add_location(nav, file$8, 4, 0, 76);
+    			toggle_class(nav, "has-shadow", /*scrollY*/ ctx[1] > 0);
+    			add_location(nav, file$8, 5, 0, 97);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2377,12 +2430,12 @@ var app = (function () {
     			append_dev(div1, a4);
 
     			dispose = [
-    				listen_dev(span3, "click", /*click_handler*/ ctx[2], false, false, false),
-    				listen_dev(a1, "click", /*click_handler_1*/ ctx[3], false, false, false),
-    				listen_dev(a2, "click", /*click_handler_2*/ ctx[4], false, false, false),
-    				listen_dev(a3, "click", /*click_handler_3*/ ctx[5], false, false, false),
-    				listen_dev(a4, "click", /*click_handler_4*/ ctx[6], false, false, false),
-    				listen_dev(div2, "click", /*click_handler_5*/ ctx[7], false, false, false)
+    				listen_dev(span3, "click", /*click_handler*/ ctx[3], false, false, false),
+    				listen_dev(a1, "click", /*click_handler_1*/ ctx[4], false, false, false),
+    				listen_dev(a2, "click", /*click_handler_2*/ ctx[5], false, false, false),
+    				listen_dev(a3, "click", /*click_handler_3*/ ctx[6], false, false, false),
+    				listen_dev(a4, "click", /*click_handler_4*/ ctx[7], false, false, false),
+    				listen_dev(div2, "click", /*click_handler_5*/ ctx[8], false, false, false)
     			];
     		},
     		p: function update(ctx, [dirty]) {
@@ -2390,24 +2443,28 @@ var app = (function () {
     				toggle_class(span3, "is-active", /*burgerActive*/ ctx[0]);
     			}
 
-    			if (dirty & /*activeMenu*/ 2) {
-    				toggle_class(a1, "navActive", /*activeMenu*/ ctx[1] == "home");
+    			if (dirty & /*activeMenu*/ 4) {
+    				toggle_class(a1, "navActive", /*activeMenu*/ ctx[2] == "home");
     			}
 
-    			if (dirty & /*activeMenu*/ 2) {
-    				toggle_class(a2, "navActive", /*activeMenu*/ ctx[1] == "about");
+    			if (dirty & /*activeMenu*/ 4) {
+    				toggle_class(a2, "navActive", /*activeMenu*/ ctx[2] == "about");
     			}
 
-    			if (dirty & /*activeMenu*/ 2) {
-    				toggle_class(a3, "navActive", /*activeMenu*/ ctx[1] == "booking");
+    			if (dirty & /*activeMenu*/ 4) {
+    				toggle_class(a3, "navActive", /*activeMenu*/ ctx[2] == "booking");
     			}
 
-    			if (dirty & /*activeMenu*/ 2) {
-    				toggle_class(a4, "navActive", /*activeMenu*/ ctx[1] == "faq");
+    			if (dirty & /*activeMenu*/ 4) {
+    				toggle_class(a4, "navActive", /*activeMenu*/ ctx[2] == "faq");
     			}
 
     			if (dirty & /*burgerActive*/ 1) {
     				toggle_class(div2, "is-active", /*burgerActive*/ ctx[0]);
+    			}
+
+    			if (dirty & /*scrollY*/ 2) {
+    				toggle_class(nav, "has-shadow", /*scrollY*/ ctx[1] > 0);
     			}
     		},
     		i: noop,
@@ -2430,9 +2487,10 @@ var app = (function () {
     }
 
     function instance$a($$self, $$props, $$invalidate) {
-    	let burgerActive = false;
+    	let { burgerActive } = $$props;
+    	let { scrollY } = $$props;
     	let activeMenu = "home";
-    	const writable_props = [];
+    	const writable_props = ["burgerActive", "scrollY"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Nav> was created with unknown prop '${key}'`);
@@ -2446,30 +2504,36 @@ var app = (function () {
     	};
 
     	const click_handler_1 = () => {
-    		$$invalidate(1, activeMenu = "home");
+    		$$invalidate(2, activeMenu = "home");
     	};
 
     	const click_handler_2 = () => {
-    		$$invalidate(1, activeMenu = "about");
+    		$$invalidate(2, activeMenu = "about");
     	};
 
     	const click_handler_3 = () => {
-    		$$invalidate(1, activeMenu = "booking");
+    		$$invalidate(2, activeMenu = "booking");
     	};
 
     	const click_handler_4 = () => {
-    		$$invalidate(1, activeMenu = "faq");
+    		$$invalidate(2, activeMenu = "faq");
     	};
 
     	const click_handler_5 = () => {
     		$$invalidate(0, burgerActive = false);
     	};
 
-    	$$self.$capture_state = () => ({ burgerActive, activeMenu });
+    	$$self.$set = $$props => {
+    		if ("burgerActive" in $$props) $$invalidate(0, burgerActive = $$props.burgerActive);
+    		if ("scrollY" in $$props) $$invalidate(1, scrollY = $$props.scrollY);
+    	};
+
+    	$$self.$capture_state = () => ({ burgerActive, scrollY, activeMenu });
 
     	$$self.$inject_state = $$props => {
     		if ("burgerActive" in $$props) $$invalidate(0, burgerActive = $$props.burgerActive);
-    		if ("activeMenu" in $$props) $$invalidate(1, activeMenu = $$props.activeMenu);
+    		if ("scrollY" in $$props) $$invalidate(1, scrollY = $$props.scrollY);
+    		if ("activeMenu" in $$props) $$invalidate(2, activeMenu = $$props.activeMenu);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -2478,6 +2542,7 @@ var app = (function () {
 
     	return [
     		burgerActive,
+    		scrollY,
     		activeMenu,
     		click_handler,
     		click_handler_1,
@@ -2491,7 +2556,7 @@ var app = (function () {
     class Nav extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$a, create_fragment$a, safe_not_equal, {});
+    		init(this, options, instance$a, create_fragment$a, safe_not_equal, { burgerActive: 0, scrollY: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -2499,6 +2564,33 @@ var app = (function () {
     			options,
     			id: create_fragment$a.name
     		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*burgerActive*/ ctx[0] === undefined && !("burgerActive" in props)) {
+    			console.warn("<Nav> was created without expected prop 'burgerActive'");
+    		}
+
+    		if (/*scrollY*/ ctx[1] === undefined && !("scrollY" in props)) {
+    			console.warn("<Nav> was created without expected prop 'scrollY'");
+    		}
+    	}
+
+    	get burgerActive() {
+    		throw new Error("<Nav>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set burgerActive(value) {
+    		throw new Error("<Nav>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get scrollY() {
+    		throw new Error("<Nav>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set scrollY(value) {
+    		throw new Error("<Nav>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -2506,14 +2598,46 @@ var app = (function () {
     const file$9 = "src\\App.svelte";
 
     function create_fragment$b(ctx) {
+    	let scrolling = false;
+
+    	let clear_scrolling = () => {
+    		scrolling = false;
+    	};
+
+    	let scrolling_timeout;
+    	let updating_burgerActive;
+    	let updating_scrollY;
     	let t0;
     	let div;
     	let t1;
     	let current;
-    	const nav = new Nav({ $$inline: true });
+    	let dispose;
+    	add_render_callback(/*onwindowscroll*/ ctx[3]);
+
+    	function nav_burgerActive_binding(value) {
+    		/*nav_burgerActive_binding*/ ctx[4].call(null, value);
+    	}
+
+    	function nav_scrollY_binding(value) {
+    		/*nav_scrollY_binding*/ ctx[5].call(null, value);
+    	}
+
+    	let nav_props = {};
+
+    	if (/*burgerActive*/ ctx[0] !== void 0) {
+    		nav_props.burgerActive = /*burgerActive*/ ctx[0];
+    	}
+
+    	if (/*scrollY*/ ctx[1] !== void 0) {
+    		nav_props.scrollY = /*scrollY*/ ctx[1];
+    	}
+
+    	const nav = new Nav({ props: nav_props, $$inline: true });
+    	binding_callbacks.push(() => bind(nav, "burgerActive", nav_burgerActive_binding));
+    	binding_callbacks.push(() => bind(nav, "scrollY", nav_scrollY_binding));
 
     	const router = new Router({
-    			props: { routes: /*routes*/ ctx[0] },
+    			props: { routes: /*routes*/ ctx[2] },
     			$$inline: true
     		});
 
@@ -2527,7 +2651,7 @@ var app = (function () {
     			create_component(router.$$.fragment);
     			t1 = space();
     			create_component(footer.$$.fragment);
-    			add_location(div, file$9, 22, 0, 492);
+    			add_location(div, file$9, 27, 0, 633);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2540,8 +2664,41 @@ var app = (function () {
     			insert_dev(target, t1, anchor);
     			mount_component(footer, target, anchor);
     			current = true;
+
+    			dispose = [
+    				listen_dev(window, "scroll", () => {
+    					scrolling = true;
+    					clearTimeout(scrolling_timeout);
+    					scrolling_timeout = setTimeout(clear_scrolling, 100);
+    					/*onwindowscroll*/ ctx[3]();
+    				}),
+    				listen_dev(div, "click", /*click_handler*/ ctx[6], false, false, false)
+    			];
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*scrollY*/ 2 && !scrolling) {
+    				scrolling = true;
+    				clearTimeout(scrolling_timeout);
+    				scrollTo(window.pageXOffset, /*scrollY*/ ctx[1]);
+    				scrolling_timeout = setTimeout(clear_scrolling, 100);
+    			}
+
+    			const nav_changes = {};
+
+    			if (!updating_burgerActive && dirty & /*burgerActive*/ 1) {
+    				updating_burgerActive = true;
+    				nav_changes.burgerActive = /*burgerActive*/ ctx[0];
+    				add_flush_callback(() => updating_burgerActive = false);
+    			}
+
+    			if (!updating_scrollY && dirty & /*scrollY*/ 2) {
+    				updating_scrollY = true;
+    				nav_changes.scrollY = /*scrollY*/ ctx[1];
+    				add_flush_callback(() => updating_scrollY = false);
+    			}
+
+    			nav.$set(nav_changes);
+    		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(nav.$$.fragment, local);
@@ -2562,6 +2719,7 @@ var app = (function () {
     			destroy_component(router);
     			if (detaching) detach_dev(t1);
     			destroy_component(footer, detaching);
+    			run_all(dispose);
     		}
     	};
 
@@ -2577,6 +2735,9 @@ var app = (function () {
     }
 
     function instance$b($$self, $$props, $$invalidate) {
+    	let burgerActive = false;
+    	let scrollY = 0;
+
     	const routes = {
     		"/": Home,
     		"/home": Home,
@@ -2595,6 +2756,24 @@ var app = (function () {
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("App", $$slots, []);
 
+    	function onwindowscroll() {
+    		$$invalidate(1, scrollY = window.pageYOffset);
+    	}
+
+    	function nav_burgerActive_binding(value) {
+    		burgerActive = value;
+    		$$invalidate(0, burgerActive);
+    	}
+
+    	function nav_scrollY_binding(value) {
+    		scrollY = value;
+    		$$invalidate(1, scrollY);
+    	}
+
+    	const click_handler = () => {
+    		$$invalidate(0, burgerActive = false);
+    	};
+
     	$$self.$capture_state = () => ({
     		Router,
     		Home,
@@ -2604,10 +2783,29 @@ var app = (function () {
     		NotFound,
     		Nav,
     		Footer,
+    		burgerActive,
+    		scrollY,
     		routes
     	});
 
-    	return [routes];
+    	$$self.$inject_state = $$props => {
+    		if ("burgerActive" in $$props) $$invalidate(0, burgerActive = $$props.burgerActive);
+    		if ("scrollY" in $$props) $$invalidate(1, scrollY = $$props.scrollY);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		burgerActive,
+    		scrollY,
+    		routes,
+    		onwindowscroll,
+    		nav_burgerActive_binding,
+    		nav_scrollY_binding,
+    		click_handler
+    	];
     }
 
     class App extends SvelteComponentDev {
