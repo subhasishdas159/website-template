@@ -47,10 +47,18 @@
   .navbar-burger:hover {
     background: white;
   }
+  .navbar-burger:active {
+    background: white;
+  }
   .navbar-burger span {
     left: calc(50% - 10px);
     height: 2px;
     width: 20px;
+    transition-duration: 150ms;
     transition-timing-function: ease-in-out;
+  }
+  .navbar-menu {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 </style>
