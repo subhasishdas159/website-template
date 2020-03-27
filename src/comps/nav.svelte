@@ -1,7 +1,7 @@
 <script>
+  import { location } from 'svelte-spa-router'
   export let burgerActive
   export let scrollY
-  let activeMenu = "home"
 </script>
 <nav class="navbar is-fixed-top" class:has-shadow={scrollY > 0} role="navigation" aria-label="main navigation">
   <div class="container is-flex-desktop">
@@ -17,10 +17,11 @@
     </div>
     <div class="navbar-menu" class:is-active={burgerActive} on:click={()=>{burgerActive = false}}>
       <div class="navbar-end">
-          <a href="#/" class="navbar-item" class:navActive={activeMenu == "home"} on:click={() => {activeMenu="home"}}>Home</a>
-          <a href="#/about" class="navbar-item" class:navActive={activeMenu == "about"} on:click={() => {activeMenu="about"}}>About</a>
-          <a href="#/booking" class="navbar-item" class:navActive={activeMenu == "booking"} on:click={() => {activeMenu="booking"}}>Booking</a>
-          <a href="#/faq" class="navbar-item" class:navActive={activeMenu == "faq"} on:click={() => {activeMenu="faq"}}>FAQ</a>
+          <a href="#/" class="navbar-item" class:navActive={$location == "/home" || $location == "/"}>Home</a>
+          <a href="#/about" class="navbar-item" class:navActive={$location == "/about"}>About</a>
+          <a href="#/booking" class="navbar-item" class:navActive={$location == "/booking"}>Booking</a>
+          <a href="#/contact" class="navbar-item" class:navActive={$location == "/contact"}>Contact</a>
+          <a href="#/faq" class="navbar-item" class:navActive={$location == "/faq"}>FAQ</a>
       </div>
     </div>
   </div>
@@ -34,6 +35,7 @@
   .navbar-item:active {
     color: blue;
     background: white;
+    font-weight: 600;
   }
   .navbar-item:hover {
     color: blue;
@@ -41,5 +43,14 @@
   .navbar-item:focus {
     color: blue;
     background: white;
+  }
+  .navbar-burger:hover {
+    background: white;
+  }
+  .navbar-burger span {
+    left: calc(50% - 10px);
+    height: 2px;
+    width: 20px;
+    transition-timing-function: ease-in-out;
   }
 </style>

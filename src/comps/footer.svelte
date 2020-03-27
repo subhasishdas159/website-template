@@ -5,3 +5,9 @@
     </p>
   </div>
 </footer>
+
+<style>
+  .footer {
+    padding: 2rem 1.5rem 2rem;
+  }
+</style>
