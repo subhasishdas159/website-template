@@ -57,8 +57,11 @@
     transition-duration: 150ms;
     transition-timing-function: ease-in-out;
   }
-  .navbar-menu {
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+  .navbar-menu .is-active {
+    overflow-y: auto;
+    -webkit-overflow-y: auto;
+    -moz-overflow-y: scroll;
+    -o-overflow-y: auto;
+    -ms-overflow-y: auto;
   }
 </style>
