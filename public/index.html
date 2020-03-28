@@ -6,6 +6,7 @@
 
 	<title>Website Template</title>
 
+	<link rel="manifest" href="/manifest.json">
 	<link rel='icon' type='image/png' href='/favicon.png'>
 	<link rel='stylesheet' href='/global.css'>
 	<link rel='stylesheet' href='/bulma.min.css'>
@@ -17,7 +18,7 @@
 			navigator.serviceWorker.register('./sw.js')
 			.then(() => {
 				// registration worked
-				console.log('Registration succeeded.');
+				console.log('Service worker registered');
 			}).catch((error) => {
 				// registration failed
 				console.log('Registration failed with ' + error);

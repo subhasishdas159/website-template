@@ -44,6 +44,9 @@
     color: blue;
     background: white;
   }
+  .navbar-burger a {
+    -webkit-tap-highlight-color: transparent;
+  }
   .navbar-burger:hover {
     background: white;
   }
@@ -60,7 +63,7 @@
   .navbar-menu .is-active {
     overflow-y: auto;
     -webkit-overflow-y: auto;
-    -moz-overflow-y: scroll;
+    -moz-overflow-y: auto;
     -o-overflow-y: auto;
     -ms-overflow-y: auto;
   }
