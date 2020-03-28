@@ -44,19 +44,16 @@
     color: blue;
     background: white;
   }
-  .navbar-burger a {
+  .navbar-burger {
     -webkit-tap-highlight-color: transparent;
   }
   .navbar-burger:hover {
     background: white;
   }
-  .navbar-burger:active {
-    background: white;
-  }
   .navbar-burger span {
-    left: calc(50% - 10px);
+    left: calc(50% - 12px);
     height: 2px;
-    width: 20px;
+    width: 25px;
     transition-duration: 150ms;
     transition-timing-function: ease-in-out;
   }
