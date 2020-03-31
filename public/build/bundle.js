@@ -1785,7 +1785,7 @@ var app = (function () {
     			add_location(p, file$3, 2, 4, 72);
     			attr_dev(div, "class", "content has-text-centered");
     			add_location(div, file$3, 1, 2, 27);
-    			attr_dev(footer, "class", "footer svelte-18wckeo");
+    			attr_dev(footer, "class", "footer svelte-1g1djdl");
     			add_location(footer, file$3, 0, 0, 0);
     		},
     		l: function claim(nodes) {
@@ -2505,44 +2505,44 @@ var app = (function () {
     			attr_dev(img, "width", "112");
     			attr_dev(img, "height", "28");
     			add_location(img, file$9, 9, 8, 355);
-    			attr_dev(a0, "class", "navbar-item svelte-fwuuis");
+    			attr_dev(a0, "class", "navbar-item svelte-h9umq4");
     			attr_dev(a0, "href", "#/");
     			add_location(a0, file$9, 8, 6, 312);
     			attr_dev(span0, "aria-hidden", "true");
-    			attr_dev(span0, "class", "svelte-fwuuis");
+    			attr_dev(span0, "class", "svelte-h9umq4");
     			add_location(span0, file$9, 12, 8, 635);
     			attr_dev(span1, "aria-hidden", "true");
-    			attr_dev(span1, "class", "svelte-fwuuis");
+    			attr_dev(span1, "class", "svelte-h9umq4");
     			add_location(span1, file$9, 13, 8, 677);
     			attr_dev(span2, "aria-hidden", "true");
-    			attr_dev(span2, "class", "svelte-fwuuis");
+    			attr_dev(span2, "class", "svelte-h9umq4");
     			add_location(span2, file$9, 14, 8, 719);
     			attr_dev(span3, "role", "button");
-    			attr_dev(span3, "class", "navbar-burger svelte-fwuuis");
+    			attr_dev(span3, "class", "navbar-burger svelte-h9umq4");
     			attr_dev(span3, "aria-label", "menu");
     			attr_dev(span3, "aria-expanded", "false");
     			toggle_class(span3, "is-active", /*burgerActive*/ ctx[0]);
     			add_location(span3, file$9, 11, 6, 465);
-    			attr_dev(div0, "class", "navbar-brand");
+    			attr_dev(div0, "class", "navbar-brand svelte-h9umq4");
     			add_location(div0, file$9, 7, 4, 278);
     			attr_dev(a1, "href", "#/");
-    			attr_dev(a1, "class", "navbar-item svelte-fwuuis");
+    			attr_dev(a1, "class", "navbar-item svelte-h9umq4");
     			toggle_class(a1, "navActive", /*$location*/ ctx[2] == "/home" || /*$location*/ ctx[2] == "/");
     			add_location(a1, file$9, 19, 10, 922);
     			attr_dev(a2, "href", "#/about");
-    			attr_dev(a2, "class", "navbar-item svelte-fwuuis");
+    			attr_dev(a2, "class", "navbar-item svelte-h9umq4");
     			toggle_class(a2, "navActive", /*$location*/ ctx[2] == "/about");
     			add_location(a2, file$9, 20, 10, 1034);
     			attr_dev(a3, "href", "#/booking");
-    			attr_dev(a3, "class", "navbar-item svelte-fwuuis");
+    			attr_dev(a3, "class", "navbar-item svelte-h9umq4");
     			toggle_class(a3, "navActive", /*$location*/ ctx[2] == "/booking");
     			add_location(a3, file$9, 21, 10, 1133);
     			attr_dev(a4, "href", "#/contact");
-    			attr_dev(a4, "class", "navbar-item svelte-fwuuis");
+    			attr_dev(a4, "class", "navbar-item svelte-h9umq4");
     			toggle_class(a4, "navActive", /*$location*/ ctx[2] == "/contact");
     			add_location(a4, file$9, 22, 10, 1238);
     			attr_dev(a5, "href", "#/faq");
-    			attr_dev(a5, "class", "navbar-item svelte-fwuuis");
+    			attr_dev(a5, "class", "navbar-item svelte-h9umq4");
     			toggle_class(a5, "navActive", /*$location*/ ctx[2] == "/faq");
     			add_location(a5, file$9, 23, 10, 1343);
     			attr_dev(div1, "class", "navbar-end");
@@ -2552,7 +2552,7 @@ var app = (function () {
     			add_location(div2, file$9, 17, 4, 784);
     			attr_dev(div3, "class", "container is-flex-desktop");
     			add_location(div3, file$9, 6, 2, 233);
-    			attr_dev(nav, "class", "navbar is-fixed-top");
+    			attr_dev(nav, "class", "navbar is-fixed-top svelte-h9umq4");
     			attr_dev(nav, "role", "navigation");
     			attr_dev(nav, "aria-label", "main navigation");
     			toggle_class(nav, "has-shadow", /*scrollY*/ ctx[1] > 0);
@@ -2790,7 +2790,7 @@ var app = (function () {
     			create_component(router.$$.fragment);
     			t1 = space();
     			create_component(footer.$$.fragment);
-    			add_location(div, file$a, 29, 0, 702);
+    			add_location(div, file$a, 38, 0, 952);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2886,6 +2886,15 @@ var app = (function () {
     		"/faq": Faq,
     		"*": NotFound
     	};
+
+    	navigator.serviceWorker.ready.then(function (registration) {
+    		registration.showNotification("Vibration Sample", {
+    			body: "Buzz! Buzz!",
+    			icon: "/assets/park.png",
+    			vibrate: [200, 100, 200, 100, 200, 100, 200],
+    			tag: "/#/about"
+    		});
+    	});
 
     	const writable_props = [];
 

@@ -32,6 +32,10 @@
     color: blue;
     font-weight: 600;
   }
+  .navbar {
+    max-height: 3rem;
+    min-height: 3rem;
+  }
   .navbar-item:active {
     color: blue;
     background: white;
@@ -46,6 +50,8 @@
   }
   .navbar-burger {
     -webkit-tap-highlight-color: transparent;
+    height: 3rem;
+    width: 3rem;
   }
   .navbar-burger:hover {
     background: white;
@@ -63,5 +69,8 @@
     -moz-overflow-y: auto;
     -o-overflow-y: auto;
     -ms-overflow-y: auto;
+  }
+  .navbar-brand, .navbar-tabs {
+    min-width: 3rem;
   }
 </style>

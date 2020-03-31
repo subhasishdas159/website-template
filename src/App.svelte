@@ -21,6 +21,15 @@
 		'*': NotFound
 	}
 
+navigator.serviceWorker.ready.then(function(registration) {
+  registration.showNotification('Vibration Sample', {
+    body: 'Buzz! Buzz!',
+    icon: '/assets/park.png',
+    vibrate: [200, 100, 200, 100, 200, 100, 200],
+    tag: '/#/about'
+  });
+});
+
 </script>
 
 <svelte:window bind:scrollY={scrollY}/>
