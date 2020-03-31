@@ -21,13 +21,17 @@
 		'*': NotFound
 	}
 
-navigator.serviceWorker.ready.then(function(registration) {
-  registration.showNotification('Vibration Sample', {
-    body: 'Buzz! Buzz!',
-    icon: '/assets/park.png',
-    vibrate: [200, 100, 200, 100, 200, 100, 200],
-    tag: '/#/about'
-  });
+Notification.requestPermission(function(result) {
+  if (result === 'granted') {
+		navigator.serviceWorker.ready.then(function(registration) {
+			registration.showNotification('Vibration Sample', {
+				body: 'Buzz! Buzz!',
+				icon: '/assets/park.png',
+				vibrate: [200, 100, 200, 100, 200, 100, 200],
+				tag: '/#/about'
+			});
+		});
+	}
 });
 
 </script>

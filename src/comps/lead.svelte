@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns has-text-justified">
       <div class="column">
-        <h1 class="title is-size-1-desktop is-size-2-touch">Some text</h1>
+        <h1 class="title is-size-1-desktop is-size-2-touch">After notify</h1>
         <h2 class="subtitle is-size-3-desktop is-size-4-touch">Some more text</h2>
         <p class="is-size-5-desktop is-size-6-touch">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere similique ut deleniti ullam ex blanditiis enim, necessitatibus recusandae voluptatibus porro natus minus excepturi unde quasi minima animi. Illum, aliquid quasi!</p><br>
         <p class="is-size-5-desktop is-size-6-touch">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere similique ut deleniti ullam ex blanditiis enim, necessitatibus recusandae voluptatibus porro natus minus excepturi unde quasi minima animi. Illum, aliquid quasi!</p><br>

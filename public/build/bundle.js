@@ -2790,7 +2790,7 @@ var app = (function () {
     			create_component(router.$$.fragment);
     			t1 = space();
     			create_component(footer.$$.fragment);
-    			add_location(div, file$a, 38, 0, 952);
+    			add_location(div, file$a, 42, 0, 1045);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2887,13 +2887,17 @@ var app = (function () {
     		"*": NotFound
     	};
 
-    	navigator.serviceWorker.ready.then(function (registration) {
-    		registration.showNotification("Vibration Sample", {
-    			body: "Buzz! Buzz!",
-    			icon: "/assets/park.png",
-    			vibrate: [200, 100, 200, 100, 200, 100, 200],
-    			tag: "/#/about"
-    		});
+    	Notification.requestPermission(function (result) {
+    		if (result === "granted") {
+    			navigator.serviceWorker.ready.then(function (registration) {
+    				registration.showNotification("Vibration Sample", {
+    					body: "Buzz! Buzz!",
+    					icon: "/assets/park.png",
+    					vibrate: [200, 100, 200, 100, 200, 100, 200],
+    					tag: "/#/about"
+    				});
+    			});
+    		}
     	});
 
     	const writable_props = [];
