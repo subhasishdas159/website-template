@@ -1,5 +1,5 @@
-const version = "0.6.25";
-const cacheName = `airhorner-${version}`;
+const version = "0.1";
+const cacheName = `website-${version}`;
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(cacheName).then(cache => {
@@ -7,7 +7,8 @@ self.addEventListener('install', e => {
         `/`,
         `/index.html`,
         `/build/bundle.css`,
-        `/build/bundle.js`
+        `/build/bundle.js`,
+        `/assets/park.png`,
       ])
           .then(() => self.skipWaiting());
     })
@@ -35,8 +36,7 @@ self.addEventListener('push', function(event) {
 
 self.addEventListener('notificationclick', function(event) {
   event.notification.close();
-  console.log(event.notification.tag)
   event.waitUntil(
-    clients.openWindow(event.notification.tag)
+    clients.openWindow(event.notification.data)
   );
 });

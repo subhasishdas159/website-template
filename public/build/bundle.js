@@ -2790,7 +2790,7 @@ var app = (function () {
     			create_component(router.$$.fragment);
     			t1 = space();
     			create_component(footer.$$.fragment);
-    			add_location(div, file$a, 42, 0, 1045);
+    			add_location(div, file$a, 43, 0, 1078);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2894,7 +2894,8 @@ var app = (function () {
     					body: "Buzz! Buzz!",
     					icon: "/assets/park.png",
     					vibrate: [200, 100, 200, 100, 200, 100, 200],
-    					tag: "/#/about"
+    					data: "/#/about",
+    					image: "/assets/park.png"
     				});
     			});
     		}

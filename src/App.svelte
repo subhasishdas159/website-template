@@ -28,7 +28,8 @@ Notification.requestPermission(function(result) {
 				body: 'Buzz! Buzz!',
 				icon: '/assets/park.png',
 				vibrate: [200, 100, 200, 100, 200, 100, 200],
-				tag: '/#/about'
+				data: '/#/about',
+				image: '/assets/park.png',
 			});
 		});
 	}
